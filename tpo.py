@@ -19,7 +19,7 @@ vehículo, ordenado facturación.
 cantidad de clientes y el costo del tipo de vehículo seleccionado.
 """
 # Constantes
-VEHICULOS = ["CHICO", "MEDIANO", "GRANDE", "CAMIONETA 4X4", "VAN"]
+# VEHICULOS = ["CHICO", "MEDIANO", "GRANDE", "CAMIONETA 4X4", "VAN"]
 MIN_CLIENTES = 200
 MAX_CLIENTES = 450
 MIN_KM = 100
@@ -130,25 +130,37 @@ while Bandera:
     print("4. Filtrar por tipo de vehículo")
     print("5. Salir")
 
-    opcion = input("Seleccione una opción ")
-    if(opcion ==1):
-        print("resultado de la primera opcion")
-        Bandera = False
+    opcion = input("Seleccione una opción: ")
+
+    if opcion == '1':
+        print("\nHa seleccionado Facturación total del mes")
+        # Aquí puedes agregar la lógica para la opción 1
+        input("Presione Enter para continuar...")
+        print("\n" * 100)
+    elif opcion == '2':
+        print("\nHa seleccionado Facturación por tipo de vehículo")
+        # Aquí puedes agregar la lógica para la opción 2
+        input("Presione Enter para continuar...")
+        print("\n" * 100)
+    elif opcion == '3':
+        print("\nHa seleccionado Lista detallada de facturación para cada cliente")
+        # Aquí puedes agregar la lógica para la opción 3
+        input("Presione Enter para continuar...")
+        print("\n" * 100)
+    elif opcion == '4':
+        print("\nHa seleccionado Filtrar por tipo de vehículo")
+        # Aquí puedes agregar la lógica para la opción 4
+        input("Presione Enter para continuar...")
+        print("\n" * 100)
+    elif opcion == '5':
+        print("\nSaliendo del programa...")
+        Bandera = False 
     else:
-       
-        print("Seleccione una opción válida")
+        print("\nSeleccione una opción válida")
+        input("Presione Enter para continuar...")
+        print("\n" * 100)
 
+print("Gracias por utilizar el programa.")
 
-
-
-
-    # while Bandera:
-    #     print("\nMenú:")
-    #     print("1. Facturación total del mes")
-    #     print("2. Facturación por tipo de vehículo")
-    #     print("3. Lista detallada de facturación para cada cliente")
-    #     print("4. Filtrar por tipo de vehículo")
-    #     print("5. Salir")
-    #     opcion = input("Elija una opción: ")
 
 
