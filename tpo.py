@@ -24,6 +24,28 @@ MIN_CLIENTES = 200
 MAX_CLIENTES = 450
 MIN_KM = 100
 MAX_KM = 5000
+PRECIO_FIJO_HASTA_100KM = [7500, 8500,9500,10000,12000]
+PRECIO_ADICIONAL_HASTA_3000KM = [550,650,750,800,700]
+PRECIO_ADICIONAL_DESDE_3000KM =[600,700,800,900,800]
+
+#Datos generados
+KM_Chico = []
+KM_Mediano = []
+KM_Grande = []
+KM_Camioneta4X4= []
+KM_Van = []
+
+#Costos  km*costo
+Costo_Chico = [ ]
+Costo_Mediano = []
+Costo_Grande = []
+Costo_Camioneta4x4 = []
+Costo_Van = []
+
+#Facturacion
+Facturacion_chico = []
+Facturacion_Mediano =[]
+
 
 # Costos definidos por tipo de vehículo
 def obtener_costos(tipo_vehiculo):
@@ -38,15 +60,33 @@ def obtener_costos(tipo_vehiculo):
     elif tipo_vehiculo == "VAN":    
         return 2.8, 12000, 700, 800
 
-# Generar datos aleatorios para los clientes
-def generar_datos():
-    num_clientes = random.randint(MIN_CLIENTES, MAX_CLIENTES)
-    clientes = []
-    for _ in range(num_clientes):
-        tipo_vehiculo = VEHICULOS[random.randint(0, len(VEHICULOS) - 1)]
+# # Generar datos aleatorios para los clientes
+# def generar_datos():
+#     num_clientes = random.randint(MIN_CLIENTES, MAX_CLIENTES)
+#     clientes = []
+#     for i in range(num_clientes):
+#         tipo_vehiculo = VEHICULOS[random.randint(0, len(VEHICULOS) - 1)]
+#         km_recorridos = random.randint(MIN_KM, MAX_KM)
+#         clientes.append({"tipo_vehiculo": tipo_vehiculo, "km_recorridos": km_recorridos})
+#     return clientes
+
+def generar_km(listaVehiculo, numeroClientes):
+    for i in range(numeroClientes):
         km_recorridos = random.randint(MIN_KM, MAX_KM)
-        clientes.append({"tipo_vehiculo": tipo_vehiculo, "km_recorridos": km_recorridos})
-    return clientes
+        listaVehiculo.append(km_recorridos)
+       
+
+def generar_datos(chico, mediano, grande, camioneta, van):
+    num_clientes = random.randint(MIN_CLIENTES,MAX_CLIENTES)
+
+    generar_km(chico, num_clientes)
+    generar_km(mediano, num_clientes)
+    generar_km(grande, num_clientes)
+    generar_km(camioneta, num_clientes)
+    generar_km(van, num_clientes)
+  
+
+
 
 # Calcular la facturación total de un cliente
 def calcular_facturacion(tipo_vehiculo, km_recorridos):
@@ -68,13 +108,21 @@ def facturacion_total(clientes):
     return total
 
 # Menú principal
-def main():
-    clientes = generar_datos()
-    while True:
-        print("\nMenú:")
-        print("1. Facturación total del mes")
-        print("2. Facturación por tipo de vehículo")
-        print("3. Lista detallada de facturación para cada cliente")
-        print("4. Filtrar por tipo de vehículo")
-        print("5. Salir")
-        opcion = input("Elija una opción: ")
+# def main():
+generar_datos(KM_Chico, KM_Mediano, KM_Grande, KM_Camioneta4X4,KM_Van)
+for i in range(len(KM_Van)):
+    print(KM_Van[i])
+
+
+Bandera = True
+    # while Bandera:
+    #     print("\nMenú:")
+    #     print("1. Facturación total del mes")
+    #     print("2. Facturación por tipo de vehículo")
+    #     print("3. Lista detallada de facturación para cada cliente")
+    #     print("4. Filtrar por tipo de vehículo")
+    #     print("5. Salir")
+    #     opcion = input("Elija una opción: ")
+
+
+print("hello")
