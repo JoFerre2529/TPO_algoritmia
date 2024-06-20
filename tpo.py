@@ -109,12 +109,39 @@ def facturacion_total(clientes):
 
 # Menú principal
 # def main():
+
+
+#Podemos usar la función exit, funcions de formato
+# no usar funciones que simplifiquen la logica
+#funcion de color
+
 generar_datos(KM_Chico, KM_Mediano, KM_Grande, KM_Camioneta4X4,KM_Van)
-for i in range(len(KM_Van)):
-    print(KM_Van[i])
+# for i in range(len(KM_Van)):
+#     print(KM_Van[i])
 
 
 Bandera = True
+
+while Bandera:
+    print("MENU PRINCIPAL")
+    print("1. Facturación total del mes")
+    print("2. Facturación por tipo de vehículo")
+    print("3. Lista detallada de facturación para cada cliente")
+    print("4. Filtrar por tipo de vehículo")
+    print("5. Salir")
+
+    opcion = input("Seleccione una opción ")
+    if(opcion ==1):
+        print("resultado de la primera opcion")
+        Bandera = False
+    else:
+       
+        print("Seleccione una opción válida")
+
+
+
+
+
     # while Bandera:
     #     print("\nMenú:")
     #     print("1. Facturación total del mes")
@@ -125,4 +152,3 @@ Bandera = True
     #     opcion = input("Elija una opción: ")
 
 
-print("hello")
