@@ -27,6 +27,14 @@ MAX_KM = 5000
 PRECIO_FIJO_HASTA_100KM = [7500, 8500,9500,10000,12000]
 PRECIO_ADICIONAL_HASTA_3000KM = [550,650,750,800,700]
 PRECIO_ADICIONAL_DESDE_3000KM =[600,700,800,900,800]
+COSTOS_MANTENIMIENTO =[0.5 , 1.1, 2, 2.5,2.8]
+
+#Codigo de los vehiculos
+#1  = Chico
+#2 = Mediano
+#3 = Grande
+#4 = Camioneta4x4
+#5 = Van
 
 #Datos generados
 KM_Chico = []
@@ -70,97 +78,161 @@ def obtener_costos(tipo_vehiculo):
 #         clientes.append({"tipo_vehiculo": tipo_vehiculo, "km_recorridos": km_recorridos})
 #     return clientes
 
-def generar_km(listaVehiculo, numeroClientes):
-    for i in range(numeroClientes):
+#GENERACION DE CLIENTES CON LOS KM'S
+
+def generar_km(listaVehiculo):
+    minimo = MIN_CLIENTES//5
+    maximo = MAX_CLIENTES//5
+    num_clientes = random.randint(MIN_CLIENTES//5,MAX_CLIENTES//5)
+
+    for i in range(num_clientes):
         km_recorridos = random.randint(MIN_KM, MAX_KM)
         listaVehiculo.append(km_recorridos)
        
 
 def generar_datos(chico, mediano, grande, camioneta, van):
-    num_clientes = random.randint(MIN_CLIENTES,MAX_CLIENTES)
+    #num_clientes = random.randint(MIN_CLIENTES,MAX_CLIENTES)
 
-    generar_km(chico, num_clientes)
-    generar_km(mediano, num_clientes)
-    generar_km(grande, num_clientes)
-    generar_km(camioneta, num_clientes)
-    generar_km(van, num_clientes)
-  
+    generar_km(chico)
+    generar_km(mediano)
+    generar_km(grande)
+    generar_km(camioneta)
+    generar_km(van)
+
+#GENERACION DE COSTOS DEPENDIENDO DEL VEHICULO
+
+def generar_costo(lista,tipoDeVehiculo):
+    for i in range(len(lista)):
+        costo = lista[i] * COSTOS_MANTENIMIENTO[tipoDeVehiculo-1]
+        if(tipoDeVehiculo==1):
+            Costo_Chico.append(costo)
+        elif (tipoDeVehiculo==2):
+            Costo_Mediano.append(costo)
+        elif(tipoDeVehiculo==3):
+            Costo_Grande.append(costo)
+        elif(tipoDeVehiculo==4):
+            Costo_Camioneta4x4.append(costo)
+        else: 
+            Costo_Van.append(costo)
+
+
+def generar_costos_vehiculos(chico, mediano, grande, caminioneta, van):
+    generar_costo(chico,1)
+    generar_costo(mediano,2)
+    generar_costo(grande,3)
+    generar_costo(caminioneta,4)
+    generar_costo(van,5)
+    
+    
 
 
 
-# Calcular la facturación total de un cliente
-def calcular_facturacion(tipo_vehiculo, km_recorridos):
-    costo_mantenimiento, precio_1000, precio_adicional_antes_3000, precio_adicional_despues_3000 = obtener_costos(tipo_vehiculo)
-    if km_recorridos <= 1000:
-        return precio_1000 + (km_recorridos * costo_mantenimiento)
-    elif km_recorridos <= 3000:
-        km_despues_1000 = km_recorridos - 1000
-        return (1000 * costo_mantenimiento) + (km_despues_1000 * precio_adicional_antes_3000)
-    elif km_recorridos > 3000:
-        km_extra = km_recorridos - 3000
-        return (km_recorridos * costo_mantenimiento) + (precio_adicional_antes_3000 * 2000) + (km_extra * precio_adicional_despues_3000)  
+# # Calcular la facturación total de un cliente
+# def calcular_facturacion(tipo_vehiculo, km_recorridos):
+#     costo_mantenimiento, precio_1000, precio_adicional_antes_3000, precio_adicional_despues_3000 = obtener_costos(tipo_vehiculo)
+#     if km_recorridos <= 1000:
+#         return precio_1000 + (km_recorridos * costo_mantenimiento)
+#     elif km_recorridos <= 3000:
+#         km_despues_1000 = km_recorridos - 1000
+#         return (1000 * costo_mantenimiento) + (km_despues_1000 * precio_adicional_antes_3000)
+#     elif km_recorridos > 3000:
+#         km_extra = km_recorridos - 3000
+#         return (km_recorridos * costo_mantenimiento) + (precio_adicional_antes_3000 * 2000) + (km_extra * precio_adicional_despues_3000)  
 
-# Total d ela facturación del mes
-def facturacion_total(clientes):
-    total = 0
-    for cliente in clientes:
-        total += calcular_facturacion(cliente["tipo_vehiculo"], cliente["km_recorridos"])
-    return total
+# # Total d ela facturación del mes
+# def facturacion_total(clientes):
+#     total = 0
+#     for cliente in clientes:
+#         total += calcular_facturacion(cliente["tipo_vehiculo"], cliente["km_recorridos"])
+#     return total
 
-# Menú principal
-# def main():
+
+
+
+
 
 
 #Podemos usar la función exit, funcions de formato
 # no usar funciones que simplifiquen la logica
 #funcion de color
 
+#MENÚ PRINCIPAL
+
 generar_datos(KM_Chico, KM_Mediano, KM_Grande, KM_Camioneta4X4,KM_Van)
-# for i in range(len(KM_Van)):
-#     print(KM_Van[i])
+generar_costos_vehiculos(KM_Chico,KM_Mediano,KM_Grande,KM_Camioneta4X4,KM_Van)
+
 
 
 Bandera = True
 
-while Bandera:
-    print("MENU PRINCIPAL")
-    print("1. Facturación total del mes")
-    print("2. Facturación por tipo de vehículo")
-    print("3. Lista detallada de facturación para cada cliente")
-    print("4. Filtrar por tipo de vehículo")
-    print("5. Salir")
+# print("TAMAÑO DE VECTOR 1", len(KM_Chico))
+# print("TAMAÑO DE VECTOR 2", len(KM_Mediano))
+# print("TAMAÑO DE VECTOR 3", len(KM_Grande))
+# print("TAMAÑO DE VECTOR 4", len(KM_Camioneta4X4))
+# print("TAMAÑO DE VECTOR 5", len(KM_Van))
 
-    opcion = input("Seleccione una opción: ")
+# print("km de chico 1", KM_Chico[0])
 
-    if opcion == '1':
-        print("\nHa seleccionado Facturación total del mes")
-        # Aquí puedes agregar la lógica para la opción 1
-        input("Presione Enter para continuar...")
-        print("\n" * 100)
-    elif opcion == '2':
-        print("\nHa seleccionado Facturación por tipo de vehículo")
-        # Aquí puedes agregar la lógica para la opción 2
-        input("Presione Enter para continuar...")
-        print("\n" * 100)
-    elif opcion == '3':
-        print("\nHa seleccionado Lista detallada de facturación para cada cliente")
-        # Aquí puedes agregar la lógica para la opción 3
-        input("Presione Enter para continuar...")
-        print("\n" * 100)
-    elif opcion == '4':
-        print("\nHa seleccionado Filtrar por tipo de vehículo")
-        # Aquí puedes agregar la lógica para la opción 4
-        input("Presione Enter para continuar...")
-        print("\n" * 100)
-    elif opcion == '5':
-        print("\nSaliendo del programa...")
-        Bandera = False 
-    else:
-        print("\nSeleccione una opción válida")
-        input("Presione Enter para continuar...")
-        print("\n" * 100)
+# print("km de chico 2", KM_Chico[1])
 
-print("Gracias por utilizar el programa.")
+# print("km de chico 3", KM_Chico[2])
+
+
+# for i in range(len(Costo_Chico)):
+#     print(Costo_Chico[i])
+
+
+print("km de camioneta 1", KM_Van[0])
+
+print("km de camioneta 2", KM_Van[1])
+
+print("km de camnioneta 3", KM_Van[2])
+
+print("Tamaño de camioneta ",len(Costo_Van))
+for i in range(len(Costo_Van)):
+    print(Costo_Van[i])
+
+
+
+# while Bandera:
+#     print("MENU PRINCIPAL")
+#     print("1. Facturación total del mes")
+#     print("2. Facturación por tipo de vehículo")
+#     print("3. Lista detallada de facturación para cada cliente")
+#     print("4. Filtrar por tipo de vehículo")
+#     print("5. Salir")
+
+#     opcion = input("Seleccione una opción: ")
+
+#     if opcion == '1':
+#         print("\nHa seleccionado Facturación total del mes")
+#         # Aquí puedes agregar la lógica para la opción 1
+#         input("Presione Enter para continuar...")
+#         print("\n" * 100)
+#     elif opcion == '2':
+#         print("\nHa seleccionado Facturación por tipo de vehículo")
+#         # Aquí puedes agregar la lógica para la opción 2
+#         input("Presione Enter para continuar...")
+#         print("\n" * 100)
+#     elif opcion == '3':
+#         print("\nHa seleccionado Lista detallada de facturación para cada cliente")
+#         # Aquí puedes agregar la lógica para la opción 3
+#         input("Presione Enter para continuar...")
+#         print("\n" * 100)
+#     elif opcion == '4':
+#         print("\nHa seleccionado Filtrar por tipo de vehículo")
+#         # Aquí puedes agregar la lógica para la opción 4
+#         input("Presione Enter para continuar...")
+#         print("\n" * 100)
+#     elif opcion == '5':
+#         print("\nSaliendo del programa...")
+#         Bandera = False 
+#     else:
+#         print("\nSeleccione una opción válida")
+#         input("Presione Enter para continuar...")
+#         print("\n" * 100)
+
+# print("Gracias por utilizar el programa.")
 
 
 
