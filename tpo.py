@@ -18,7 +18,8 @@ vehículo, ordenado facturación.
 ● Poder seleccionar un tipo de vehículo y que se detallen la facturación, la
 cantidad de clientes y el costo del tipo de vehículo seleccionado.
 """
-# Constantes
+# Constantes;
+VEHICULOS_KM = ["KM_Chico", "KM_Mediano", "KM_Grande", "KM_Camioneta4X4", "KM_Van"]
 # VEHICULOS = ["CHICO", "MEDIANO", "GRANDE", "CAMIONETA 4X4", "VAN"]
 MIN_CLIENTES = 200
 MAX_CLIENTES = 450
@@ -28,7 +29,7 @@ PRECIO_FIJO_HASTA_100KM = [7500, 8500,9500,10000,12000]
 PRECIO_ADICIONAL_HASTA_3000KM = [550,650,750,800,700]
 PRECIO_ADICIONAL_DESDE_3000KM =[600,700,800,900,800]
 COSTOS_MANTENIMIENTO =[0.5 , 1.1, 2, 2.5,2.8]
-
+            
 #Codigo de los vehiculos
 #1  = Chico
 #2 = Mediano
@@ -37,6 +38,12 @@ COSTOS_MANTENIMIENTO =[0.5 , 1.1, 2, 2.5,2.8]
 #5 = Van
 
 #Datos generados
+km_por_tipo_vehiculo = {
+    "chico": [],
+    "mediano": [],
+    "grande": []
+}
+
 KM_Chico = []
 KM_Mediano = []
 KM_Grande = []
@@ -55,18 +62,18 @@ Facturacion_chico = []
 Facturacion_Mediano =[]
 
 
-# Costos definidos por tipo de vehículo
-def obtener_costos(tipo_vehiculo):
-    if tipo_vehiculo == "CHICO":
-        return 0.5, 7500, 550, 600
-    elif tipo_vehiculo == "MEDIANO":
-        return 1.1, 8500, 650, 700
-    elif tipo_vehiculo == "GRANDE":
-        return 2, 9500, 750 , 800
-    elif tipo_vehiculo == "CAMIONETA 4X4":
-        return 2.5, 10000, 800, 900
-    elif tipo_vehiculo == "VAN":    
-        return 2.8, 12000, 700, 800
+# # Costos definidos por tipo de vehículo
+# def obtener_costos(tipo_vehiculo):
+#     if tipo_vehiculo == "CHICO":
+#         return 0.5, 7500, 550, 600
+#     elif tipo_vehiculo == "MEDIANO":
+#         return 1.1, 8500, 650, 700
+#     elif tipo_vehiculo == "GRANDE":
+#         return 2, 9500, 750 , 800
+#     elif tipo_vehiculo == "CAMIONETA 4X4":
+#         return 2.5, 10000, 800, 900
+#     elif tipo_vehiculo == "VAN":    
+#         return 2.8, 12000, 700, 800
 
 # # Generar datos aleatorios para los clientes
 # def generar_datos():
@@ -80,15 +87,25 @@ def obtener_costos(tipo_vehiculo):
 
 #GENERACION DE CLIENTES CON LOS KM'S
 
+
+CANT_TIPOS_VEHICULOS = 5
+
 def generar_km(listaVehiculo):
-    minimo = MIN_CLIENTES//5
-    maximo = MAX_CLIENTES//5
-    num_clientes = random.randint(MIN_CLIENTES//5,MAX_CLIENTES//5)
+    minimo_por_vehiculo = MIN_CLIENTES // CANT_TIPOS_VEHICULOS
+    maximo_por_vehiculo = MAX_CLIENTES // CANT_TIPOS_VEHICULOS
+
+    num_clientes = random.randint(minimo_por_vehiculo, maximo_por_vehiculo)
 
     for i in range(num_clientes):
         km_recorridos = random.randint(MIN_KM, MAX_KM)
         listaVehiculo.append(km_recorridos)
        
+#SOLUCION ALTERNATIVA A REVISAR
+# def generar_datos(km_tipo_vehiculo):
+#     for km_vehiculo in km_tipo_vehiculo.values:
+#         generar_km(km_vehiculo)
+
+# generar_datos(km_por_tipo_vehiculo)
 
 def generar_datos(chico, mediano, grande, camioneta, van):
     #num_clientes = random.randint(MIN_CLIENTES,MAX_CLIENTES)
@@ -123,7 +140,15 @@ def generar_costos_vehiculos(chico, mediano, grande, caminioneta, van):
     generar_costo(caminioneta,4)
     generar_costo(van,5)
     
-    
+
+# #GENERACION DE FACTURACION (meli)
+
+# def generar_facturacion_vehiculos(listaVehiculos):
+#     for i in range(len(listaVehiculos)):
+#         facturacion = PRECIO_FIJO_HASTA_100KM[i]
+#         if(listaVehiculo[i][i] > )
+
+        
 
 
 
@@ -160,7 +185,7 @@ def generar_costos_vehiculos(chico, mediano, grande, caminioneta, van):
 
 generar_datos(KM_Chico, KM_Mediano, KM_Grande, KM_Camioneta4X4,KM_Van)
 generar_costos_vehiculos(KM_Chico,KM_Mediano,KM_Grande,KM_Camioneta4X4,KM_Van)
-
+generar_facturacion_vehiculos(VEHICULOS_KM)
 
 
 Bandera = True
