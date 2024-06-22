@@ -1,8 +1,5 @@
 import random
-
-
-"""
-Una empresa que se dedica al alquiler de autos en una ciudad turística, tiene diferentes
+"""Una empresa que se dedica al alquiler de autos en una ciudad turística, tiene diferentes
 costos según el tipo de auto y la cantidad de KM realizados por los clientes. Todos los
 meses, tienen que generar la facturación de los clientes del mes, el cual se calcula según
 la cantidad de KM que realizó y el tipo de auto que alquiló y para ello cuentan con la
@@ -21,19 +18,16 @@ vehículo, ordenado facturación.
 ● Poder seleccionar un tipo de vehículo y que se detallen la facturación, la
 cantidad de clientes y el costo del tipo de vehículo seleccionado.
 """
-
-
 # Constantes
-VEHICULOS = ["CHICO", "MEDIANO", "GRANDE", "CAMIONETA 4X4", "VAN"]
+# VEHICULOS = ["CHICO", "MEDIANO", "GRANDE", "CAMIONETA 4X4", "VAN"]
 MIN_CLIENTES = 200
 MAX_CLIENTES = 450
 MIN_KM = 100
 MAX_KM = 5000
-PRECIO_FIJO_HASTA_1000KM = [7500,8500,9500,10000,12000]
+PRECIO_FIJO_HASTA_1000KM = [7500, 8500,9500,10000,12000]
 PRECIO_ADICIONAL_HASTA_3000KM = [550,650,750,800,700]
-PRECIO_ADICIONAL_DESDE_3000KM = [600,700,800,900,800]
-COSTOS_MANTENIMIENTO = [0.5 , 1.1, 2, 2.5,2.8]
-
+PRECIO_ADICIONAL_DESDE_3000KM =[600,700,800,900,800]
+COSTOS_MANTENIMIENTO =[0.5 , 1.1, 2, 2.5,2.8]
 
 #Codigo de los vehiculos
 #1  = Chico
@@ -42,31 +36,49 @@ COSTOS_MANTENIMIENTO = [0.5 , 1.1, 2, 2.5,2.8]
 #4 = Camioneta4x4
 #5 = Van
 
-
 #Datos generados
 KM_Chico = []
 KM_Mediano = []
 KM_Grande = []
 KM_Camioneta4X4= []
 KM_Van = []
-
-
 #Costos  km*costo
 Costo_Chico = [ ]
 Costo_Mediano = []
 Costo_Grande = []
 Costo_Camioneta4x4 = []
 Costo_Van = []
-
-
 #Facturacion
 Facturacion_chico = []
 Facturacion_Mediano =[]
-
+# Costos definidos por tipo de vehículo
+def obtener_costos(tipo_vehiculo):
+    if tipo_vehiculo == "CHICO":
+        return 0.5, 7500, 550, 600
+    elif tipo_vehiculo == "MEDIANO":
+        return 1.1, 8500, 650, 700
+    elif tipo_vehiculo == "GRANDE":
+        return 2, 9500, 750 , 800
+    elif tipo_vehiculo == "CAMIONETA 4X4":
+        return 2.5, 10000, 800, 900
+    elif tipo_vehiculo == "VAN":    
+        return 2.8, 12000, 700, 800
+# # Generar datos aleatorios para los clientes
+# def generar_datos():
+#     num_clientes = random.randint(MIN_CLIENTES, MAX_CLIENTES)
+#     clientes = []
+#     for i in range(num_clientes):
+#         tipo_vehiculo = VEHICULOS[random.randint(0, len(VEHICULOS) - 1)]
+#         km_recorridos = random.randint(MIN_KM, MAX_KM)
+#         clientes.append({"tipo_vehiculo": tipo_vehiculo, "km_recorridos": km_recorridos})
+#     return clientes
 
 #GENERACION DE CLIENTES CON LOS KM'S
+
 def generar_km(listaVehiculo):
-    num_clientes = random.randint(MIN_CLIENTES//200,MAX_CLIENTES//450)
+    minimo = MIN_CLIENTES//5
+    maximo = MAX_CLIENTES//5
+    num_clientes = random.randint(MIN_CLIENTES//5,MAX_CLIENTES//5)
 
     for i in range(num_clientes):
         km_recorridos = random.randint(MIN_KM, MAX_KM)
@@ -74,15 +86,16 @@ def generar_km(listaVehiculo):
 
 
 def generar_datos(chico, mediano, grande, camioneta, van):
-    num_clientes = random.randint(MIN_CLIENTES,MAX_CLIENTES)
+        #num_clientes = random.randint(MIN_CLIENTES,MAX_CLIENTES)
+
     generar_km(chico)
     generar_km(mediano)
     generar_km(grande)
     generar_km(camioneta)
     generar_km(van)
 
-
 #GENERACION DE COSTOS DEPENDIENDO DEL VEHICULO
+
 def generar_costo(lista,tipoDeVehiculo):
     for i in range(len(lista)):
         costo = lista[i] * COSTOS_MANTENIMIENTO[tipoDeVehiculo-1]
@@ -96,7 +109,6 @@ def generar_costo(lista,tipoDeVehiculo):
             Costo_Camioneta4x4.append(costo)
         else: 
             Costo_Van.append(costo)
-
 
 def generar_costos_vehiculos(chico, mediano, grande, caminioneta, van):
     generar_costo(chico,1)
@@ -112,69 +124,80 @@ def generar_facturacion(tipoDevehiculo, km_recorridos):
     precio_adicional_antes_3000 = PRECIO_ADICIONAL_HASTA_3000KM[tipoDevehiculo]
     precio_adicional_despues_3000 = PRECIO_ADICIONAL_DESDE_3000KM[tipoDevehiculo]
     if km_recorridos <= 1000:
-        Facturacion_chico [Facturacion_chico] = precio_1000 + (km_recorridos * costo_mantenimiento)
+        return precio_1000 + km_recorridos
     elif km_recorridos <= 3000:
         km_despues_1000 = km_recorridos - 1000
-        Facturacion_chico [Facturacion_chico] = (1000 * costo_mantenimiento) + (km_despues_1000 * precio_adicional_antes_3000)
+        return (km_despues_1000 * precio_adicional_antes_3000)
     else:
         km_extra = km_recorridos - 3000
-        Facturacion_chico [Facturacion_chico] = (1000 * costo_mantenimiento) + (2000 * precio_adicional_antes_3000) + (km_extra * precio_adicional_despues_3000)
+        return (2000 * precio_adicional_antes_3000) + (km_extra * precio_adicional_despues_3000)
 
 
-#Podemos usar la función exit, funcions de formato
-# no usar funciones que simplifiquen la logica
-#funcion de color
-
+# # Total d ela facturación del mes
+# def facturacion_total(clientes):
+#     total = 0
+#     for cliente in clientes:
+#         total += calcular_facturacion(cliente["tipo_vehiculo"], cliente["km_recorridos"])
+#     return total
 
 #MENÚ PRINCIPAL
-generar_datos(KM_Chico, KM_Mediano, KM_Grande, KM_Camioneta4X4,KM_Van)
-generar_costos_vehiculos(KM_Chico,KM_Mediano,KM_Grande,KM_Camioneta4X4,KM_Van)
-Bandera = True
 
+generar_datos(KM_Chico, KM_Mediano, KM_Grande, KM_Camioneta4X4,KM_Van)
+# for i in range(len(KM_Van)):
+#     print(KM_Van[i])
+generar_costos_vehiculos(KM_Chico,KM_Mediano,KM_Grande,KM_Camioneta4X4,KM_Van)
 
 # print("TAMAÑO DE VECTOR 1", len(KM_Chico))
 # print("TAMAÑO DE VECTOR 2", len(KM_Mediano))
 # print("TAMAÑO DE VECTOR 3", len(KM_Grande))
 # print("TAMAÑO DE VECTOR 4", len(KM_Camioneta4X4))
 # print("TAMAÑO DE VECTOR 5", len(KM_Van))
+
 # print("km de chico 1", KM_Chico[0])
+
 # print("km de chico 2", KM_Chico[1])
+
 # print("km de chico 3", KM_Chico[2])
+
+
 # for i in range(len(Costo_Chico)):
 #     print(Costo_Chico[i])
 
 
-print("km de chico 1", KM_Chico)
-print("Facturacion: ", Facturacion_chico)
-print("Tamaño de chico ",len(Costo_Chico))
+# Menú principal
+generar_datos(KM_Chico, KM_Mediano, KM_Grande, KM_Camioneta4X4, KM_Van)
+generar_costos_vehiculos(KM_Chico, KM_Mediano, KM_Grande, KM_Camioneta4X4, KM_Van)
+Bandera = True
+
+print("km de chico 1", KM_Chico[0])
+print("Tamaño de chico ", len(Costo_Chico))
 for i in range(len(Costo_Chico)):
     print(Costo_Chico[i])
 print("\n" * 5)
 
 print("km de mediano 1", KM_Mediano[0])
-print("Tamaño de mediano ",len(Costo_Mediano))
+print("Tamaño de mediano ", len(Costo_Mediano))
 for i in range(len(Costo_Mediano)):
     print(Costo_Mediano[i])
 print("\n" * 5)
 
 print("km de grande 1", KM_Grande[0])
-print("Tamaño de grande ",len(Costo_Grande))
+print("Tamaño de grande ", len(Costo_Grande))
 for i in range(len(Costo_Grande)):
     print(Costo_Grande[i])
 print("\n" * 5)
 
 print("km de 4x4 1", KM_Camioneta4X4[0])
-print("Tamaño de 4x4 ",len(Costo_Camioneta4x4))
+print("Tamaño de 4x4 ", len(Costo_Camioneta4x4))
 for i in range(len(Costo_Camioneta4x4)):
     print(Costo_Camioneta4x4[i])
 print("\n" * 5)
 
 print("km de Van 1", KM_Van[0])
-print("Tamaño de van ",len(Costo_Van))
+print("Tamaño de van ", len(Costo_Van))
 for i in range(len(Costo_Van)):
     print(Costo_Van[i])
 print("\n" * 5)
-
 
 while Bandera:
     print("MENU PRINCIPAL")
@@ -188,7 +211,7 @@ while Bandera:
 
     if opcion == '1':
         print("\nHa seleccionado Facturación total del mes")
-        print(generar_facturacion())
+        # Aquí puedes agregar la lógica para la opción 1
         input("Presione Enter para continuar...")
         print("\n" * 100)
     elif opcion == '2':
@@ -208,11 +231,9 @@ while Bandera:
         print("\n" * 100)
     elif opcion == '5':
         print("\nSaliendo del programa...")
-        Bandera = False 
+        Bandera = False
     else:
-            print("\nSeleccione una opción válida")
-            input("Presione Enter para continuar...")
-            print("\n" * 100)
+        print("\nSeleccione una opción válida")
+        input("Presione Enter para continuar...")
+        print("\n" * 100)
 print("Gracias por utilizar el programa.")
-
-
