@@ -227,19 +227,20 @@ def  calcular_costo_chico():
     total = 0
     for i in range(len(Costo_Chico)):
         total += Costo_Chico[i]
-        return total
+     
+        return  round(total,2)
 
 def  calcular_costo_mediano():
     total = 0
     for i in range(len(Costo_Mediano)):
         total += Costo_Mediano[i]
-        return total
+        return  round(total,2)
 
 def  calcular_costo_grande():
     total = 0
     for i in range(len(Costo_Grande)):
         total += Costo_Grande[i]
-        return total
+        return  round(total,2)
 
 def calcular_costo_camioneta():
     total = 0
@@ -514,7 +515,7 @@ print("Tamaño de chico ", len(Costo_Chico))
 print("costo de chico 1 ", 
       Costo_Chico[5])
 print("facturacion de vehiculo 1: ", Facturacion_Chico[5])
-
+            
 
 while Bandera:
     print("============================")
@@ -526,34 +527,31 @@ while Bandera:
     print("3. Lista detallada de facturación para cada cliente")
     print("4. Filtrar por tipo de vehículo")
     print("5. Salir")
-
+    print()
     opcion = input("Seleccione una opción: ")
 
     if opcion == '1':
         
-        print("\nPodra visualizar la facturación, cantidad de vehículos y costo asociado")
-
-        print("-----------------------------------------")
+       
         punto_1()
       
         input("Presione Enter para continuar...")
 
         print("\n" * 50)
     elif opcion == '2':
-        print("\nHa seleccionado Facturación por tipo de vehículo")
+      
 
         punto_2()
         input("Presione Enter para continuar...")
         print("\n" * 50)
     elif opcion == '3':
-        print("\nHa seleccionado Lista detallada de facturación para cada cliente")
-        # Aquí puedes agregar la lógica para la opción 3
+     
         punto_3()
         input("Presione Enter para continuar...")
         print("\n" * 50)
     elif opcion == '4':
-        print("\nHa seleccionado Filtrar por tipo de vehículo")
-        # Aquí puedes agregar la lógica para la opción 4
+       
+     
         punto_4()
         input("Presione Enter para continuar...")
         print("\n" * 50)
