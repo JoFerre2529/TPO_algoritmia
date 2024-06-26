@@ -56,9 +56,6 @@ Facturacion_Grande =[]
 Facturacion_Camioneta4x4 =[]
 Facturacion_Van =[]
 
-
-#/////////////// GENERACIÓN DE DATOS ///////////////
-
 #GENERACION DE CLIENTES CON LOS KM'S
 def generar_km(listaVehiculo):
     num_clientes = random.randint(MIN_CLIENTES//5,MAX_CLIENTES//5)
@@ -95,9 +92,6 @@ def generar_costos_vehiculos(Chico, Mediano, Grande, Camioneta, Van):
     generar_costo(Grande,3)
     generar_costo(Camioneta,4)
     generar_costo(Van,5)
-
-
-
 
 # GENERACION DE FACTURACIÓN DEPENDIENDO DEL VEHICULO
 def generar_facturacion(lista, tipoDeVehiculo):
@@ -138,8 +132,6 @@ def generar_datos_facturacion(Chico, Mediano, Grande, Camioneta, Van):
     generar_facturacion(Grande, 3)
     generar_facturacion(Camioneta, 4)
     generar_facturacion(Van, 5)
-
-#/////////////CALCULOS DE FACTURACION ////////////
 
 # TOTAL DE LA FACTURACIÓN DEL MES
 def calcular_facturacion_total():
@@ -186,7 +178,6 @@ def facturacion_van():
         total += monto
     return total
 
-#CALCULO DE TOTAL DE QUILOMETROS POR CADA VEHICULO
 
 def km_chico():
     total = 0
@@ -225,7 +216,7 @@ def km_van():
 
 def costo_chico():
     total = 0
-    for costo in range(len(Costo_Chico)):
+    for costo in Costo_Chico:
         total += costo
         return total
 
