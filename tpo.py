@@ -158,32 +158,32 @@ def calcular_facturacion_total():
 #FACTURACION POR CADA TIPO DE VEHICULO
 def facturacion_chico():
     total = 0
-    for monto in range(len(Facturacion_Chico)) :
-        total += monto
+    for i in range(len(Facturacion_Chico)) :
+        total += Facturacion_Chico[i]
     return total
 
 def facturacion_mediano():
     total = 0
-    for monto in range(len(Facturacion_Mediano)):
-        total += monto
+    for i in range(len(Facturacion_Mediano)):
+        total += Facturacion_Mediano[i]
     return total
 
 def facturacion_grande():
     total = 0
-    for monto in range(len(Facturacion_Grande)):
-        total += monto
+    for i in range(len(Facturacion_Grande)):
+        total += Facturacion_Grande[i]
     return total
 
 def facturacion_camioneta():
     total = 0
-    for monto in range(len(Facturacion_Camioneta4x4)):
-        total += monto
+    for i in range(len(Facturacion_Camioneta4x4)):
+        total += Facturacion_Camioneta4x4[i]
     return total
     
 def facturacion_van():
     total = 0
-    for monto in range(len(Facturacion_Van)):
-        total += monto
+    for i in range(len(Facturacion_Van)):
+        total += Facturacion_Van[i]
     return total
 
 #CALCULO DE TOTAL DE QUILOMETROS POR CADA VEHICULO
@@ -253,6 +253,8 @@ def costo_van():
         total += costo
         return total
 
+
+
 def calcular_costo_total():
     costo_total = 0
     
@@ -287,11 +289,32 @@ def cantidad_vehiculos():
     
     return cantidad
 
+# def ordenar(lista_facturacion, lista_km, lista_tipos, lista_costos):
+#     largo = len(lista_facturacion)
+#     for i in range(largo-1):
+#         for j in range(i+1, largo):
+#             if (lista_facturacion[i] > lista_facturacion[j]):
+#                 aux = lista_facturacion[i]
+#                 lista_facturacion[i] = lista_facturacion[j]
+#                 lista_facturacion[j] = aux
+
+#                 aux_km = lista_km[i]
+#                 lista_km[i] = lista_km[j]
+#                 lista_km[j] = aux_km
+
+#                 aux_tipo = lista_tipos[i]
+#                 lista_tipos[i] = lista_tipos[j]
+#                 lista_tipos[j] = aux_tipo
+
+#                 aux_costos = lista_costos[i]
+#                 lista_costos[i] = lista_costos[j]
+#                 lista_costos[j] = aux_costos
+
 def ordenar(lista_facturacion, lista_km, lista_tipos, lista_costos):
     largo = len(lista_facturacion)
     for i in range(largo-1):
         for j in range(i+1, largo):
-            if (lista_facturacion[i] > lista_facturacion[j]):
+            if (lista_facturacion[i] < lista_facturacion[j]):  
                 aux = lista_facturacion[i]
                 lista_facturacion[i] = lista_facturacion[j]
                 lista_facturacion[j] = aux
@@ -308,6 +331,8 @@ def ordenar(lista_facturacion, lista_km, lista_tipos, lista_costos):
                 lista_costos[i] = lista_costos[j]
                 lista_costos[j] = aux_costos
 
+
+#//////////////////EJERCICIOS//////////////////////
 def punto_1():
     print("\n")
     print("FACTURACIÓN TOTAL DEL MES  :   $", calcular_facturacion_total())
@@ -354,10 +379,12 @@ def punto_2():
     ordenar(facturacion_por_tipo, km_por_tipo, costo_por_tipo, tipo_vehiculos)
 
     for i in range(len(tipo_vehiculos)):
-        print("Tipo vehiculo: ", tipo_vehiculos[i])
-        print("Facturacion: ", facturacion_por_tipo[i])
-        print("Cantidad KM: ", km_por_tipo[i])
-        print("Costo asociado: ", costo_por_tipo[i])
+        print("TIPO DE VEHICULO: ", tipo_vehiculos[i])
+        print("FACTURACIÓN:  $", facturacion_por_tipo[i])
+        print("CANTIDAD DE KM: ", km_por_tipo[i])
+        print("COSTO ASOCIADO:  $", costo_por_tipo[i])
+        print()
+        print("--------------------------------------")
 
 #Listado completo detallado del total facturado de cada cliente con su tipo de vehículo, ordenado facturación.
 def punto_3():
