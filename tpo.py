@@ -56,6 +56,9 @@ Facturacion_Grande =[]
 Facturacion_Camioneta4x4 =[]
 Facturacion_Van =[]
 
+
+#/////////////// GENERACIÓN DE DATOS ///////////////
+
 #GENERACION DE CLIENTES CON LOS KM'S
 def generar_km(listaVehiculo):
     num_clientes = random.randint(MIN_CLIENTES//5,MAX_CLIENTES//5)
@@ -92,6 +95,9 @@ def generar_costos_vehiculos(Chico, Mediano, Grande, Camioneta, Van):
     generar_costo(Grande,3)
     generar_costo(Camioneta,4)
     generar_costo(Van,5)
+
+
+
 
 # GENERACION DE FACTURACIÓN DEPENDIENDO DEL VEHICULO
 def generar_facturacion(lista, tipoDeVehiculo):
@@ -133,129 +139,133 @@ def generar_datos_facturacion(Chico, Mediano, Grande, Camioneta, Van):
     generar_facturacion(Camioneta, 4)
     generar_facturacion(Van, 5)
 
+#/////////////CALCULOS DE FACTURACION ////////////
+
 # TOTAL DE LA FACTURACIÓN DEL MES
 def calcular_facturacion_total():
     total = 0
 
-    total += facturacion_chico()
-    total += facturacion_mediano()
-    total += facturacion_grande()
-    total += facturacion_camioneta()
-    total += facturacion_van()
+    total += calcular_facturacion_chico()
+    total += calcular_facturacion_mediano()
+    total += calcular_facturacion_grande()
+    total += calcular_facturacion_camioneta()
+    total += calcular_facturacion_van()
 
+    redondeo = round(total,2)
+
+    return redondeo
+
+#FACTURACION POR CADA TIPO DE VEHICULO
+def calcular_facturacion_chico():
+    total = 0
+    for i in range(len(Facturacion_Chico)) :
+        total += Facturacion_Chico[i]
     return total
 
-#TODO: Cambiar "for in" por "for range"
-def facturacion_chico():
+def calcular_facturacion_mediano():
     total = 0
-    for facturacion in Facturacion_Chico:
-        total += facturacion
+    for i in range(len(Facturacion_Mediano)):
+        total += Facturacion_Mediano[i]
     return total
 
-def facturacion_mediano():
+def calcular_facturacion_grande():
     total = 0
-    for facturacion in Facturacion_Mediano:
-        total += facturacion
+    for i in range(len(Facturacion_Grande)):
+        total += Facturacion_Grande[i]
     return total
 
-def facturacion_grande():
+def calcular_facturacion_camioneta():
     total = 0
-    for facturacion in Facturacion_Grande:
-        total += facturacion
-    return total
-
-def facturacion_camioneta():
-    total = 0
-    for facturacion in Facturacion_Camioneta4x4:
-        total += facturacion
-    return total
-    
-def facturacion_van():
-    total = 0
-    for facturacion in Facturacion_Van:
-        total += facturacion
-    return total
-
-
-def km_chico():
-    total = 0
-    for km in KM_Chico:
-        total += km
-    return total
-
-def km_mediano():
-    total = 0
-    for km in KM_Mediano:
-        total += km
-    return total
-
-def km_grande():
-    total = 0
-    for km in KM_Grande:
-        total += km
-    return total
-
-def km_camioneta():
-    total = 0
-    for km in KM_Camioneta4X4:
-        total += km
+    for i in range(len(Facturacion_Camioneta4x4)):
+        total += Facturacion_Camioneta4x4[i]
     return total
     
-def km_van():
+def calcular_facturacion_van():
     total = 0
-    for km in KM_Van:
+    for i in range(len(Facturacion_Van)):
+        total += Facturacion_Van[i]
+    return total
+
+#CALCULO DE TOTAL DE QUILOMETROS POR CADA VEHICULO
+
+def calcular_km_chico():
+    total = 0
+    for km in range(len(KM_Chico)):
         total += km
     return total
 
-def costo_chico():
+def calcular_km_mediano():
     total = 0
-    for costo in Costo_Chico:
-        total += costo
-        return total
+    for km in range(len(KM_Mediano)):
+        total += km
+    return total
 
-def costo_mediano():
+def calcular_km_grande():
     total = 0
-    for costo in Costo_Mediano:
-        total += costo
-        return total
+    for km in range(len(KM_Grande)):
+        total += km
+    return total
 
-def costo_grande():
+def calcular_km_camioneta():
     total = 0
-    for costo in Costo_Grande:
-        total += costo
-        return total
+    for km in range(len(KM_Camioneta4X4)):
+        total += km
+    return total
+    
+def calcular_km_van():
+    total = 0
+    for km in range(len(KM_Van)):
+        total += km
+    return total
 
-def costo_camioneta():
-    total = 0
-    for costo in Costo_Camioneta4x4:
-        total += costo
-        return total
 
-def costo_van():
+
+#FUNCIONES DE COSTO POR CADA TIPO 
+
+def calcular_costo_chico():
     total = 0
-    for costo in Costo_Van:
-        total += costo
-        return total
+    for i in range(len(Costo_Chico)):
+        total += Costo_Chico[i]
+    return total
+
+def calcular_costo_mediano():
+    total = 0
+    for i in range(len(Costo_Mediano)):
+        total += Costo_Mediano[i]
+    return total
+
+def calcular_costo_grande():
+    total = 0
+    for i in range(len(Costo_Grande)):
+        total += Costo_Grande[i]
+    return total
+
+def calcular_costo_camioneta():
+    total = 0
+    for i in range(len(Costo_Camioneta4x4)):
+        total += Costo_Camioneta4x4[i]
+    return total
+
+def calcular_costo_van():
+    total = 0
+    for i in range(len(Costo_Van)):
+        total += Costo_Van[i]
+    return total
+
 
 def calcular_costo_total():
-    costo_total = 0
-    
-    for i in range(len(Costo_Chico)):
-        costo_total += Costo_Chico[i]
 
-    for i in range(len(Costo_Mediano)):
-        costo_total += Costo_Mediano[i]
+    total = 0
 
-    for i in range(len(Costo_Grande)):
-        costo_total += Costo_Grande[i]
+    total += calcular_costo_chico()
+    total += calcular_costo_mediano()
+    total += calcular_costo_grande()
+    total += calcular_costo_camioneta()
+    total += calcular_costo_van()
 
-    for i in range(len(Costo_Camioneta4x4)):
-        costo_total += Costo_Camioneta4x4[i]
+    redondeo = round(total,2)
 
-    for i in range(len(Costo_Van)):
-        costo_total += Costo_Van[i]
-    
-    return costo_total
+    return redondeo
 
 def cantidad_vehiculos():
     cantidad = 0
@@ -268,11 +278,32 @@ def cantidad_vehiculos():
     
     return cantidad
 
+# def ordenar(lista_facturacion, lista_km, lista_tipos, lista_costos):
+#     largo = len(lista_facturacion)
+#     for i in range(largo-1):
+#         for j in range(i+1, largo):
+#             if (lista_facturacion[i] > lista_facturacion[j]):
+#                 aux = lista_facturacion[i]
+#                 lista_facturacion[i] = lista_facturacion[j]
+#                 lista_facturacion[j] = aux
+
+#                 aux_km = lista_km[i]
+#                 lista_km[i] = lista_km[j]
+#                 lista_km[j] = aux_km
+
+#                 aux_tipo = lista_tipos[i]
+#                 lista_tipos[i] = lista_tipos[j]
+#                 lista_tipos[j] = aux_tipo
+
+#                 aux_costos = lista_costos[i]
+#                 lista_costos[i] = lista_costos[j]
+#                 lista_costos[j] = aux_costos
+
 def ordenar(lista_facturacion, lista_km, lista_tipos, lista_costos):
     largo = len(lista_facturacion)
     for i in range(largo-1):
         for j in range(i+1, largo):
-            if (lista_facturacion[i] > lista_facturacion[j]):
+            if (lista_facturacion[i] < lista_facturacion[j]):  
                 aux = lista_facturacion[i]
                 lista_facturacion[i] = lista_facturacion[j]
                 lista_facturacion[j] = aux
@@ -290,30 +321,40 @@ def ordenar(lista_facturacion, lista_km, lista_tipos, lista_costos):
                 lista_costos[j] = aux_costos
 
 
+#//////////////////EJERCICIOS//////////////////////
+def punto_1():
+    print("\n")
+    print("FACTURACIÓN TOTAL DEL MES  :   $", calcular_facturacion_total())
+    print("\n")    
+    print("COSTO TOTAL DEL MES  :   $", calcular_costo_total())
+    print("\n")
+    print("CANTIDAD TOTAL DE VEHICULOS  ", cantidad_vehiculos(), "Unidades")
+    print("\n")
+
 # Total de facturación por tipo de vehículo, la cantidad de KM, el costo asociado ordenado por facturación.
 def punto_2():
     facturacion_por_tipo = [
-        facturacion_chico(),
-        facturacion_mediano(),
-        facturacion_grande(),
-        facturacion_camioneta(),
-        facturacion_van()
+        calcular_facturacion_chico(),
+        calcular_facturacion_mediano(),
+        calcular_facturacion_grande(),
+        calcular_facturacion_camioneta(),
+        calcular_facturacion_van()
     ]
 
     km_por_tipo = [
-        km_chico(),
-        km_mediano(),
-        km_grande(),
-        km_camioneta(),
-        km_van()
+        calcular_km_chico(),
+        calcular_km_mediano(),
+        calcular_km_grande(),
+        calcular_km_camioneta(),
+        calcular_km_van()
     ]
 
     costo_por_tipo = [
-        costo_chico(),
-        costo_mediano(),
-        costo_grande(),
-        costo_camioneta(),
-        costo_van()
+        calcular_costo_chico(),
+        calcular_costo_mediano(),
+        calcular_costo_grande(),
+        calcular_costo_camioneta(),
+        calcular_costo_van()
     ]
 
     tipo_vehiculos = [
@@ -327,10 +368,12 @@ def punto_2():
     ordenar(facturacion_por_tipo, km_por_tipo, costo_por_tipo, tipo_vehiculos)
 
     for i in range(len(tipo_vehiculos)):
-        print("Tipo vehiculo: ", tipo_vehiculos[i])
-        print("Facturacion: ", facturacion_por_tipo[i])
-        print("Cantidad KM: ", km_por_tipo[i])
-        print("Costo asociado: ", costo_por_tipo[i])
+        print("TIPO DE VEHICULO: ", tipo_vehiculos[i])
+        print("FACTURACIÓN:  $", facturacion_por_tipo[i])
+        print("CANTIDAD DE KM: ", km_por_tipo[i])
+        print("COSTO ASOCIADO:  $", costo_por_tipo[i])
+        print()
+        print("--------------------------------------")
 
 #Listado completo detallado del total facturado de cada cliente con su tipo de vehículo, ordenado facturación.
 def punto_3():
@@ -409,52 +452,61 @@ def punto_3():
 
 # Poder seleccionar un tipo de vehículo y que se detallen la facturación, la cantidad de clientes y el costo del tipo de vehículo seleccionado.
 def punto_4():
-    #TODO: Mostrar lista tipo de vehiculos, a que numero corresponde cada uno?
-    num_tipo = int(input("Ingrese tipo vehiculo: "))
-    facturacion = obtener_facturacion_tipo(num_tipo)
-    cant_clientes = obtener_cant_clientes_tipo(num_tipo)
-    costo = obtener_costo_tipo(num_tipo)
+    num_tipo = int(input("Seleccione el tipo de vehículo (1: Chico, 2: Mediano, 3: Grande, 4: Camioneta, 5: Van): "))
 
-    print("Facturacion: ", facturacion)
+    if num_tipo == 1:
+        facturacion = 0
+        cant_clientes = 0
+        costo = 0
+        for i in range(len(Facturacion_Chico)):
+            facturacion += Facturacion_Chico[i]
+            cant_clientes += 1
+            costo += Costo_Chico[i]
+        tipo_vehiculo = "Chico"
+    elif num_tipo == 2:
+        facturacion = 0
+        cant_clientes = 0
+        costo = 0
+        for i in range(len(Facturacion_Mediano)):
+            facturacion += Facturacion_Mediano[i]
+            cant_clientes += 1
+            costo += Costo_Mediano[i]
+        tipo_vehiculo = "Mediano"
+    elif num_tipo == 3:
+        facturacion = 0
+        cant_clientes = 0
+        costo = 0
+        for i in range(len(Facturacion_Grande)):
+            facturacion += Facturacion_Grande[i]
+            cant_clientes += 1
+            costo += Costo_Grande[i]
+        tipo_vehiculo = "Grande"
+    elif num_tipo == 4:
+        facturacion = 0
+        cant_clientes = 0
+        costo = 0
+        for i in range(len(Facturacion_Camioneta4x4)):
+            facturacion += Facturacion_Camioneta4x4[i]
+            cant_clientes += 1
+            costo += Costo_Camioneta4x4[i]
+        tipo_vehiculo = "Camioneta 4x4"
+    elif num_tipo == 5:
+        facturacion = 0
+        cant_clientes = 0
+        costo = 0
+        for i in range(len(Facturacion_Van)):
+            facturacion += Facturacion_Van[i]
+            cant_clientes += 1
+            costo += Costo_Van[i]
+        tipo_vehiculo = "Van"
+    else:
+        print("Selección inválida. Por favor, elija un número entre 1 y 5.")
+        return
+
+    print("Tipo de vehículo seleccionado: ", tipo_vehiculo)
+    print("Facturación total: $", facturacion)
     print("Cantidad de clientes: ", cant_clientes)
-    print("Costo: ", costo)
-    
-
-def obtener_facturacion_tipo(num_tipo):
-    if num_tipo == 1:
-        return facturacion_chico()
-    elif num_tipo == 2:
-        return facturacion_mediano()
-    elif num_tipo == 3:
-        return facturacion_grande()
-    elif num_tipo == 4:
-        return facturacion_camioneta()
-    elif num_tipo == 5:
-        return facturacion_van()
-
-def obtener_cant_clientes_tipo(num_tipo):
-    if num_tipo == 1:
-        return len(Facturacion_Chico)
-    elif num_tipo == 2:
-        return len(Facturacion_Mediano)
-    elif num_tipo == 3:
-        return len(Facturacion_Grande)
-    elif num_tipo == 4:
-        return len(Facturacion_Camioneta4x4)
-    elif num_tipo == 5:
-        return len(Facturacion_Van)
-
-def obtener_costo_tipo(num_tipo):
-    if num_tipo == 1:
-        return len(Costo_Chico)
-    elif num_tipo == 2:
-        return len(Costo_Mediano)
-    elif num_tipo == 3:
-        return len(Costo_Grande)
-    elif num_tipo == 4:
-        return len(Costo_Camioneta4x4)
-    elif num_tipo == 5:
-        return len(Costo_Van)
+    print("Costo asociado: $", costo)
 
 # Menú principal
 generar_datos_KM(KM_Chico, KM_Mediano, KM_Grande, KM_Camioneta4X4, KM_Van)
@@ -466,41 +518,15 @@ Bandera = True
 
 print("km de chico 1", KM_Chico[0])
 print("Tamaño de chico ", len(Costo_Chico))
+print("costo de chico 1 ", Costo_Chico[0])
 print("facturacion de vehiculo 1: ", Facturacion_Chico[0])
-for i in range(len(Costo_Chico)):
-    print(Costo_Chico[i])
-print("\n" * 2)
 
-print("km de mediano 1", KM_Mediano[0])
-print("Tamaño de mediano ", len(Costo_Mediano))
-print("facturacion de vehiculo 1: ", Facturacion_Mediano[0])
-for i in range(len(Costo_Mediano)):
-    print(Costo_Mediano[i])
-print("\n" * 2)
-
-print("km de grande 1", KM_Grande[0])
-print("Tamaño de grande ", len(Costo_Grande))
-print("facturacion de vehiculo 1: ", Facturacion_Grande[0])
-for i in range(len(Costo_Grande)):
-    print(Costo_Grande[i])
-print("\n" * 2)
-
-print("km de 4x4 1", KM_Camioneta4X4[0])
-print("Tamaño de 4x4 ", len(Costo_Camioneta4x4))
-print("facturacion de vehiculo 1: ", Facturacion_Camioneta4x4[0])
-for i in range(len(Costo_Camioneta4x4)):
-    print(Costo_Camioneta4x4[i])
-print("\n" * 2)
-
-print("km de Van 1", KM_Van[0])
-print("Tamaño de van ", len(Costo_Van))
-print("facturacion de vehiculo 1: ", Facturacion_Van[0])
-for i in range(len(Costo_Van)):
-    print(Costo_Van[i])
-print("\n" * 2)
 
 while Bandera:
-    print("MENU PRINCIPAL")
+    print("============================")
+    print("      MENU PRINCIPAL")
+    print("============================")
+    print("")
     print("1. Facturación total del mes")
     print("2. Facturación por tipo de vehículo")
     print("3. Lista detallada de facturación para cada cliente")
@@ -510,16 +536,17 @@ while Bandera:
     opcion = input("Seleccione una opción: ")
 
     if opcion == '1':
-        print("\nHa seleccionado Facturación total del mes")
-        # Aquí puedes agregar la lógica para la opción 1
-        print("Facturación total del mes  :   ", calcular_facturacion_total())
-        print("Costo  total del mes  :   ", calcular_costo_total())
-        print("Cantidad total de vehículos: ", cantidad_vehiculos())
+        
+        print("\nPodra visualizar la facturación, costo asociado y cantidad de vehículos")
+
+        print("-----------------------------------------")
+        punto_1()
         input("Presione Enter para continuar...")
+
         print("\n" * 50)
     elif opcion == '2':
         print("\nHa seleccionado Facturación por tipo de vehículo")
-        # Aquí puedes agregar la lógica para la opción 2
+
         punto_2()
         input("Presione Enter para continuar...")
         print("\n" * 50)
@@ -543,7 +570,6 @@ while Bandera:
         input("Presione Enter para continuar...")
         print("\n" * 50)
 print("Gracias por utilizar el programa.")
-
 
 
 
