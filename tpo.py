@@ -371,6 +371,7 @@ def punto_2():
     ordenar(facturacion_por_tipo, km_por_tipo, costo_por_tipo, tipo_vehiculos)
 
     for i in range(len(tipo_vehiculos)):
+        print()
         print("TIPO DE VEHICULO: ", tipo_vehiculos[i])
         print("FACTURACIÓN:  $", facturacion_por_tipo[i])
         print("CANTIDAD DE KM: ", km_por_tipo[i])
@@ -447,15 +448,23 @@ def punto_3():
                 clientes_detalle[j], clientes_detalle[j+1] = clientes_detalle[j+1], clientes_detalle[j]
 
     for cliente in clientes_detalle:
+        print()
+        print("--------------------------------------")
+        print()
         print("CLIENTE :", cliente[0])
-        print("TIPO DE VEHICULO :", cliente[0])
-        print("KM RECORRIDOS :", cliente[0])
-        print("COSTO DE MANTENIMIENTO :", cliente[0])
-        print("FACTURACIÓN TOTAL:", cliente[0])
+        print("TIPO DE VEHICULO :", cliente[1])
+        print("KM RECORRIDOS :", cliente[2])
+        print("COSTO DE MANTENIMIENTO :  $", cliente[3])
+        print("FACTURACIÓN TOTAL:  $", cliente[4])
+        print()
+
+       
 
 # Poder seleccionar un tipo de vehículo y que se detallen la facturación, la cantidad de clientes y el costo del tipo de vehículo seleccionado.
 def punto_4():
+    print()
     num_tipo = int(input("Seleccione el tipo de vehículo (1: Chico, 2: Mediano, 3: Grande, 4: Camioneta, 5: Van): "))
+    print()
 
     if num_tipo == 1:
         facturacion = 0
@@ -505,11 +514,16 @@ def punto_4():
     else:
         print("Selección inválida. Por favor, elija un número entre 1 y 5.")
         return
+    
 
-    print("Tipo de vehículo seleccionado: ", tipo_vehiculo)
-    print("Facturación total: $", facturacion)
-    print("Cantidad de clientes: ", cant_clientes)
-    print("Costo asociado: $", costo)
+     
+    print("--------------------------------------")
+    print()
+    print("TIPO DE VEHICULO ASOCIADO: ", tipo_vehiculo)
+    print("FACTURACION TOTAL: $", facturacion)
+    print("CANTIDAD DE CLIENTES: ", cant_clientes)
+    print("COSTO ASOCIADO: $", costo)
+    print()
 
 
 # Menú principal
@@ -537,6 +551,7 @@ while Bandera:
     print("5. Salir")
     print()
     opcion = input("Seleccione una opción: ")
+    print()
 
     if opcion == '1':
         punto_1()
@@ -544,8 +559,6 @@ while Bandera:
 
         print("\n" * 50)
     elif opcion == '2':
-      
-
         punto_2()
         input("Presione Enter para continuar...")
         print("\n" * 50)
@@ -558,9 +571,11 @@ while Bandera:
        
      
         punto_4()
+     
         input("Presione Enter para continuar...")
         print("\n" * 50)
     elif opcion == '5':
+        
         print("\nSaliendo del programa...")
         Bandera = False
     else:
