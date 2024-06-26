@@ -222,38 +222,38 @@ def calcular_km_van():
 
 #FUNCIONES DE COSTO POR CADA TIPO 
 
-
-def  calcular_costo_chico():
+def calcular_costo_chico():
     total = 0
     for i in range(len(Costo_Chico)):
         total += Costo_Chico[i]
-     
-        return  round(total,2)
+    return total
 
-def  calcular_costo_mediano():
+def calcular_costo_mediano():
     total = 0
     for i in range(len(Costo_Mediano)):
         total += Costo_Mediano[i]
-        return  round(total,2)
+    return total
 
-def  calcular_costo_grande():
+
+def calcular_costo_grande():
     total = 0
     for i in range(len(Costo_Grande)):
         total += Costo_Grande[i]
-        return  round(total,2)
+
+    return total
+
 
 def calcular_costo_camioneta():
     total = 0
-    for i in range(len(Costo_Camioneta4x4) ):
+    for i in range(len(Costo_Camioneta4x4)):
         total += Costo_Camioneta4x4[i]
-        return total
+    return total
 
-def  calcular_costo_van():
+def calcular_costo_van():
     total = 0
-    for i in range((len(Costo_Van))):
+    for i in range(len(Costo_Van)):
         total += Costo_Van[i]
-        return total
-
+    return total
 
 
 def calcular_costo_total():
@@ -447,60 +447,70 @@ def punto_3():
                 clientes_detalle[j], clientes_detalle[j+1] = clientes_detalle[j+1], clientes_detalle[j]
 
     for cliente in clientes_detalle:
-        print("Cliente:", cliente[0])
-        print("Tipo de vehículo:", cliente[0])
-        print("KM recorridos:", cliente[0])
-        print("Costo de mantenimiento:", cliente[0])
-        print("Facturación total:", cliente[0])
+        print("CLIENTE :", cliente[0])
+        print("TIPO DE VEHICULO :", cliente[0])
+        print("KM RECORRIDOS :", cliente[0])
+        print("COSTO DE MANTENIMIENTO :", cliente[0])
+        print("FACTURACIÓN TOTAL:", cliente[0])
 
 # Poder seleccionar un tipo de vehículo y que se detallen la facturación, la cantidad de clientes y el costo del tipo de vehículo seleccionado.
 def punto_4():
-    #TODO: Mostrar lista tipo de vehiculos, a que numero corresponde cada uno?
-    num_tipo = int(input("Ingrese tipo vehiculo: "))
-    facturacion = obtener_facturacion_tipo(num_tipo)
-    cant_clientes = obtener_cant_clientes_tipo(num_tipo)
-    costo = obtener_costo_tipo(num_tipo)
+    num_tipo = int(input("Seleccione el tipo de vehículo (1: Chico, 2: Mediano, 3: Grande, 4: Camioneta, 5: Van): "))
 
-    print("Facturacion: ", facturacion)
+    if num_tipo == 1:
+        facturacion = 0
+        cant_clientes = 0
+        costo = 0
+        for i in range(len(Facturacion_Chico)):
+            facturacion += Facturacion_Chico[i]
+            cant_clientes += 1
+            costo += Costo_Chico[i]
+        tipo_vehiculo = "Chico"
+    elif num_tipo == 2:
+        facturacion = 0
+        cant_clientes = 0
+        costo = 0
+        for i in range(len(Facturacion_Mediano)):
+            facturacion += Facturacion_Mediano[i]
+            cant_clientes += 1
+            costo += Costo_Mediano[i]
+        tipo_vehiculo = "Mediano"
+    elif num_tipo == 3:
+        facturacion = 0
+        cant_clientes = 0
+        costo = 0
+        for i in range(len(Facturacion_Grande)):
+            facturacion += Facturacion_Grande[i]
+            cant_clientes += 1
+            costo += Costo_Grande[i]
+        tipo_vehiculo = "Grande"
+    elif num_tipo == 4:
+        facturacion = 0
+        cant_clientes = 0
+        costo = 0
+        for i in range(len(Facturacion_Camioneta4x4)):
+            facturacion += Facturacion_Camioneta4x4[i]
+            cant_clientes += 1
+            costo += Costo_Camioneta4x4[i]
+        tipo_vehiculo = "Camioneta 4x4"
+    elif num_tipo == 5:
+        facturacion = 0
+        cant_clientes = 0
+        costo = 0
+        for i in range(len(Facturacion_Van)):
+            facturacion += Facturacion_Van[i]
+            cant_clientes += 1
+            costo += Costo_Van[i]
+        tipo_vehiculo = "Van"
+    else:
+        print("Selección inválida. Por favor, elija un número entre 1 y 5.")
+        return
+
+    print("Tipo de vehículo seleccionado: ", tipo_vehiculo)
+    print("Facturación total: $", facturacion)
     print("Cantidad de clientes: ", cant_clientes)
-    print("Costo: ", costo)
-    
+    print("Costo asociado: $", costo)
 
-def obtener_facturacion_tipo(num_tipo):
-    if num_tipo == 1:
-        return   calcular_facturacion_chico()
-    elif num_tipo == 2:
-        return   calcular_facturacion_mediano()
-    elif num_tipo == 3:
-        return   calcular_facturacion_grande()
-    elif num_tipo == 4:
-        return   calcular_facturacion_camioneta()
-    elif num_tipo == 5:
-        return   calcular_facturacion_van()
-
-def obtener_cant_clientes_tipo(num_tipo):
-    if num_tipo == 1:
-        return len(Facturacion_Chico)
-    elif num_tipo == 2:
-        return len(Facturacion_Mediano)
-    elif num_tipo == 3:
-        return len(Facturacion_Grande)
-    elif num_tipo == 4:
-        return len(Facturacion_Camioneta4x4)
-    elif num_tipo == 5:
-        return len(Facturacion_Van)
-
-def obtener_costo_tipo(num_tipo):
-    if num_tipo == 1:
-        return len(Costo_Chico)
-    elif num_tipo == 2:
-        return len(Costo_Mediano)
-    elif num_tipo == 3:
-        return len(Costo_Grande)
-    elif num_tipo == 4:
-        return len(Costo_Camioneta4x4)
-    elif num_tipo == 5:
-        return len(Costo_Van)
 
 # Menú principal
 generar_datos_KM(KM_Chico, KM_Mediano, KM_Grande, KM_Camioneta4X4, KM_Van)
@@ -510,12 +520,10 @@ generar_datos_facturacion(KM_Chico, KM_Mediano, KM_Grande, KM_Camioneta4X4, KM_V
 
 Bandera = True
 
-print("km de chico 1", KM_Chico[5])
+print("km de chico 1", KM_Chico[0])
 print("Tamaño de chico ", len(Costo_Chico))
-print("costo de chico 1 ", 
-      Costo_Chico[5])
-print("facturacion de vehiculo 1: ", Facturacion_Chico[5])
-            
+print("costo de chico 1 ", Costo_Chico[0])
+print("facturacion de vehiculo 1: ", Facturacion_Chico[0])
 
 while Bandera:
     print("============================")
@@ -531,10 +539,7 @@ while Bandera:
     opcion = input("Seleccione una opción: ")
 
     if opcion == '1':
-        
-       
         punto_1()
-      
         input("Presione Enter para continuar...")
 
         print("\n" * 50)
@@ -563,7 +568,6 @@ while Bandera:
         input("Presione Enter para continuar...")
         print("\n" * 50)
 print("Gracias por utilizar el programa.")
-
 
 
 
