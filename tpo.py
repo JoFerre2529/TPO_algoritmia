@@ -145,67 +145,72 @@ def calcular_facturacion_total():
 
     return total
 
-#TODO: Cambiar "for in" por "for range"
+#FACTURACION POR CADA TIPO DE VEHICULO
 def facturacion_chico():
     total = 0
-    for facturacion in Facturacion_Chico:
-        total += facturacion
+    for monto in range(len(Facturacion_Chico)) :
+        total += monto
     return total
 
 def facturacion_mediano():
     total = 0
-    for facturacion in Facturacion_Mediano:
-        total += facturacion
+    for monto in range(len(Facturacion_Mediano)):
+        total += monto
     return total
 
 def facturacion_grande():
     total = 0
-    for facturacion in Facturacion_Grande:
-        total += facturacion
+    for monto in range(len(Facturacion_Grande)):
+        total += monto
     return total
 
 def facturacion_camioneta():
     total = 0
-    for facturacion in Facturacion_Camioneta4x4:
-        total += facturacion
+    for monto in range(len(Facturacion_Camioneta4x4)):
+        total += monto
     return total
     
 def facturacion_van():
     total = 0
-    for facturacion in Facturacion_Van:
-        total += facturacion
+    for monto in range(len(Facturacion_Van)):
+        total += monto
     return total
 
 
 def km_chico():
     total = 0
-    for km in KM_Chico:
+    for km in range(len(KM_Chico)):
         total += km
     return total
 
 def km_mediano():
     total = 0
-    for km in KM_Mediano:
+    for km in range(len(KM_Mediano)):
         total += km
     return total
 
 def km_grande():
     total = 0
-    for km in KM_Grande:
+    for km in range(len(KM_Grande)):
         total += km
     return total
 
 def km_camioneta():
     total = 0
-    for km in KM_Camioneta4X4:
+    for km in range(len(KM_Camioneta4X4)):
         total += km
     return total
     
 def km_van():
     total = 0
-    for km in KM_Van:
+    for km in range(len(KM_Van)):
         total += km
     return total
+
+
+
+#FUNCIONES DE COSTO POR CADA TIPO 
+
 
 def costo_chico():
     total = 0
