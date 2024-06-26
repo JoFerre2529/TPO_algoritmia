@@ -452,63 +452,61 @@ def punto_3():
 
 # Poder seleccionar un tipo de vehículo y que se detallen la facturación, la cantidad de clientes y el costo del tipo de vehículo seleccionado.
 def punto_4():
-    # Mostrar lista tipo de vehículos y el número correspondiente
-    print("\nSeleccione el tipo de vehículo:")
-    print("1. Chico")
-    print("2. Mediano")
-    print("3. Grande")
-    print("4. Camioneta 4x4")
-    print("5. Van")
-    
-    num_tipo = int(input("Ingrese el número correspondiente al tipo de vehículo: "))
-    
-    if num_tipo in [1, 2, 3, 4, 5]:
-        facturacion = obtener_facturacion_tipo(num_tipo)
-        cant_clientes = obtener_cant_clientes_tipo(num_tipo)
-        costo = obtener_costo_tipo(num_tipo)
+    num_tipo = int(input("Seleccione el tipo de vehículo (1: Chico, 2: Mediano, 3: Grande, 4: Camioneta, 5: Van): "))
 
-        print("\nTipo de vehículo seleccionado:", ["Chico", "Mediano", "Grande", "Camioneta 4x4", "Van"][num_tipo-1])
-        print("Facturación total: $", facturacion)
-        print("Cantidad de clientes: ", cant_clientes)
-        print("Costo asociado: $", costo)
+    if num_tipo == 1:
+        facturacion = 0
+        cant_clientes = 0
+        costo = 0
+        for i in range(len(Facturacion_Chico)):
+            facturacion += Facturacion_Chico[i]
+            cant_clientes += 1
+            costo += Costo_Chico[i]
+        tipo_vehiculo = "Chico"
+    elif num_tipo == 2:
+        facturacion = 0
+        cant_clientes = 0
+        costo = 0
+        for i in range(len(Facturacion_Mediano)):
+            facturacion += Facturacion_Mediano[i]
+            cant_clientes += 1
+            costo += Costo_Mediano[i]
+        tipo_vehiculo = "Mediano"
+    elif num_tipo == 3:
+        facturacion = 0
+        cant_clientes = 0
+        costo = 0
+        for i in range(len(Facturacion_Grande)):
+            facturacion += Facturacion_Grande[i]
+            cant_clientes += 1
+            costo += Costo_Grande[i]
+        tipo_vehiculo = "Grande"
+    elif num_tipo == 4:
+        facturacion = 0
+        cant_clientes = 0
+        costo = 0
+        for i in range(len(Facturacion_Camioneta4x4)):
+            facturacion += Facturacion_Camioneta4x4[i]
+            cant_clientes += 1
+            costo += Costo_Camioneta4x4[i]
+        tipo_vehiculo = "Camioneta 4x4"
+    elif num_tipo == 5:
+        facturacion = 0
+        cant_clientes = 0
+        costo = 0
+        for i in range(len(Facturacion_Van)):
+            facturacion += Facturacion_Van[i]
+            cant_clientes += 1
+            costo += Costo_Van[i]
+        tipo_vehiculo = "Van"
     else:
-        print("Número de vehículo inválido, intente nuevamente.")
+        print("Selección inválida. Por favor, elija un número entre 1 y 5.")
+        return
 
-def obtener_facturacion_tipo(num_tipo):
-    if num_tipo == 1:
-        return calcular_facturacion_chico()
-    elif num_tipo == 2:
-        return calcular_facturacion_mediano()
-    elif num_tipo == 3:
-        return calcular_facturacion_grande()
-    elif num_tipo == 4:
-        return calcular_facturacion_camioneta()
-    elif num_tipo == 5:
-        return calcular_facturacion_van()
-
-def obtener_cant_clientes_tipo(num_tipo):
-    if num_tipo == 1:
-        return len(Facturacion_Chico)
-    elif num_tipo == 2:
-        return len(Facturacion_Mediano)
-    elif num_tipo == 3:
-        return len(Facturacion_Grande)
-    elif num_tipo == 4:
-        return len(Facturacion_Camioneta4x4)
-    elif num_tipo == 5:
-        return len(Facturacion_Van)
-
-def obtener_costo_tipo(num_tipo):
-    if num_tipo == 1:
-        return calcular_costo_chico()
-    elif num_tipo == 2:
-        return calcular_costo_mediano()
-    elif num_tipo == 3:
-        return calcular_costo_grande()
-    elif num_tipo == 4:
-        return calcular_costo_camioneta()
-    elif num_tipo == 5:
-        return calcular_costo_van()
+    print("Tipo de vehículo seleccionado: ", tipo_vehiculo)
+    print("Facturación total: $", facturacion)
+    print("Cantidad de clientes: ", cant_clientes)
+    print("Costo asociado: $", costo)
 
 
 # Menú principal
